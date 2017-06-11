@@ -1,0 +1,16 @@
+user     system      total        real
+original 250:                                                                                          0.010000   0.000000   0.010000 (  0.007542)
+improving_complexity_version_one 250:                                                                  0.000000   0.010000   0.010000 (  0.006941)
+improving_complexity_version_two 250:                                                                  0.010000   0.000000   0.010000 (  0.005507)
+improving_complexity_version_three 250:                                                                0.000000   0.000000   0.000000 (  0.002092)
+---------------------------------
+original 1k:                                                                                           0.040000   0.010000   0.050000 (  0.059795)
+improving_complexity_version_one 1k:                                                                   0.040000   0.020000   0.060000 (  0.053838)
+improving_complexity_version_two 1k:                                                                   0.040000   0.010000   0.050000 (  0.063128)
+improving_complexity_version_three 1k:                                                                 0.010000   0.000000   0.010000 (  0.012198)
+
+Find the Big-O of each version
+
+Version 1 - n^2
+Version 2 - n log n
+Version 3 - n log n
