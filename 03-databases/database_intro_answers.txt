@@ -1,0 +1,63 @@
+For each of these skills, write pseudo-code to demonstrate how your application might perform these tasks through an ORM.
+
+1. remove duplicates in a query response
+    Table.select(column).distinct
+
+    SELECT DISTINCT column FROM table
+
+2. filter records using inequalities, pattern matching, ranges, and boolean logic
+    -- INEQUALITY AND BOOLEAN --
+    Client.where.not(locked: true)
+
+    SELECT * FROM clients WHERE (clients.locked != 1)
+
+    -- PATTERN MATCHING --
+    Client.where(orders_count: [1,3,5])
+
+    SELECT * FROM clients WHERE (clients.orders_count IN (1,3,5))
+
+    -- RANGES --
+    Client.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight)
+
+    SELECT * FROM clients WHERE (clients.created_at BETWEEN '2008-12-21 00:00:00' AND '2008-12-22 00:00:00')
+
+3. sort records in a particular order
+    Table.all.order(column desc)
+    Table.all.order(column asc)
+
+    SELECT * FROM table ORDER BY column DESC
+    SELECT * FROM table ORDER BY column ASC
+
+4. limit the number of records returned
+    Table.all(n)
+
+    SELECT * FROM table LIMIT n
+
+5. group records into sections
+    Table.all.group(column)
+
+    SELECT * FROM table GROUP_BY column
+
+6. perform calculations using aggregate functions
+    Client.includes("orders").where(first_name: 'Ryan', orders: { status: 'received' }).count
+
+    SELECT count(DISTINCT clients.id) AS count_all FROM clients
+    LEFT OUTER JOIN orders ON orders.client_id = clients.id
+    WHERE(clients.first_name = 'Ryan' AND orders.status = 'received')
+
+7. join tables using cross join, inner join, and outer join
+    -- CROSS JOIN --
+    company.joins(:foods)
+    SELECT * FROM company CROSS JOIN foods ON company.food_id = food.id
+
+    -- INNER JOIN --
+    Category.joins(:articles)
+
+    SELECT categories.* FROM categories
+    INNER JOIN articles ON articles.category_id = categories.id
+
+    -- OUTER JOIN --
+    Author.left_outer_joins(:posts)
+
+    SELECT authors.*
+    LEFT OUTER JOIN posts ON posts.author_id = authors.id GROUP BY authors.id
