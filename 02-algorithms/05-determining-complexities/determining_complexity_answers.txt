@@ -35,7 +35,7 @@ Q3. What's the Big-O of the following algorithm? Submit your work and reasoning 
      largest
     end
 
-A3. The Big-O is log n because the program because as the size of the collection doubles, the number of iterations increases by 1. This is similar to Binary Search.
+A3. The Big-O of this algorithm is linear or O(n). It is dependent on the length of the collection and a larger collection will result in a corresponding increase in run time.
 
 
 Q4. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
@@ -50,7 +50,7 @@ Q4. What's the Big-O of the following algorithm? Submit your work and reasoning 
      end
     end
 
-A4. The Big-O is n log n, because the program recursively iterates depending on n.
+A4. The Big-O is O(2^N) because it recursively runs through itself repeatedly the larger it gets.
 
 Q5. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
 
