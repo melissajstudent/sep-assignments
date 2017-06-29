@@ -28,11 +28,20 @@ class OpenAddressing
   end
 
   def [](key)
-    (0...size()).each do |i|
-      if @items[i] != nil
-        if @items[i].key == key
-          return @items[i].value
-        end
+    # (0...size()).each do |i|
+    #   if @items[i] != nil
+    #     if @items[i].key == key
+    #       return @items[i].value
+    #     end
+    #   end
+    # end
+
+    i = self.index(key, size)
+    while i < size
+      if @items[i].key == key
+        return @items[i].value
+      else
+        i += 1
       end
     end
   end
@@ -46,20 +55,14 @@ class OpenAddressing
 
   # Given an index, find the next open index in @items
   def next_open_index(index)
-    i = index
-    for i in index..self.size-1 do
-      if @items[i].nil?
-        return i
-      end
+    while @items[index]
+      index += 1
     end
-    if index > 0
-      for i in 0..index-1
-        if @items[i].nil?
-          return i
-        end
-      end
+    if index >= self.size
+      return -1
+    else
+      return index
     end
-    return -1
   end
 
   # Simple method to return the number of items in the hash
@@ -87,9 +90,10 @@ class OpenAddressing
 
   # Print items hash
   def print_items
-    (0...size()).each do |i|
-      if @items[i] != nil
-        puts "index: #{i}, #{@items[i].key}: #{@items[i].value}"
+    @items.each do |i|
+      if i != nil
+        ind = self.index(i.key, size)
+        puts "index: #{ind}, #{i.key}: #{i.value}"
       end
     end
     puts "load factor: #{load_factor()}"
