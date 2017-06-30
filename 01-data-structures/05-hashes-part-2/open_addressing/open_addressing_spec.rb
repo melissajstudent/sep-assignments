@@ -13,7 +13,6 @@ RSpec.describe OpenAddressing, type: Class do
     star_wars_movies["Star Wars: A New Hope"] = "Number Four"
     star_wars_movies["Star Wars: The Empire Strikes Back"] = "Number Five"
     star_wars_movies["Star Wars: Return of the Jedi"] = "Number Six"
-    star_wars_movies.print_items()
   end
 
   describe "#index" do
@@ -54,6 +53,7 @@ RSpec.describe OpenAddressing, type: Class do
       expect(star_wars_movies["Star Wars: A New Hope"]).to eq "Number Four"
       expect(star_wars_movies["Star Wars: The Empire Strikes Back"]).to eq "Number Five"
       expect(star_wars_movies["Star Wars: Return of the Jedi"]).to eq "Number Six"
+      star_wars_movies.print_items()
     end
   end
 
@@ -84,6 +84,7 @@ RSpec.describe OpenAddressing, type: Class do
       expect(movies["A New Hope"]).to eq "Average"
       expect(movies["Empire Strikes Back"]).to eq "Excellent"
       expect(movies["Return of the Jedi"]).to eq "The Best"
+      movies.print_items()
     end
   end
 end
