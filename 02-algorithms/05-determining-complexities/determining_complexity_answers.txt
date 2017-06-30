@@ -1,0 +1,138 @@
+Q1. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+    def goodbye_world(n)
+      puts "Goodbye World! #{n}"
+    end
+
+A1. The Big-O is 1 because this is a constant time complexity program. It always takes the same amount of time to complete.
+
+Q2. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+    def find_largest(collection)
+     largest = collection[0]
+     collection.length.times do |i|
+       if collection[i] >= largest
+         largest = collection[i]
+       end
+     end
+     largest
+    end
+
+A2. The Big-O is n because the program iterates the number of times that is equal to the length of the collection. Therefore, the time to complete is dependent on the size of the collection. This is similar to Linear Search.
+
+Q3. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+    def find_largest(collection)
+     largest = collection[0][0]
+     collection.length.times do |i|
+       subcollection = collection[i]
+       subcollection.length.times do |i|
+         if subcollection[i] >= largest
+           largest = subcollection[i]
+         end
+       end
+     end
+     largest
+    end
+
+A3. The Big-O of this algorithm is linear or O(n). It is dependent on the length of the collection and a larger collection will result in a corresponding increase in run time.
+
+
+Q4. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+    def numbers(n)
+     if (n == 0)
+       return 0
+     elsif (n == 1)
+       return 1
+     else
+       return numbers(n-1) + numbers(n-2)
+     end
+    end
+
+A4. The Big-O is O(2^N) because it recursively runs through itself repeatedly the larger it gets.
+
+Q5. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+    def iterative(n)
+     num1 = 0
+     num2 = 1
+
+     i = 0
+     while i < n-1
+       tmp = num1 + num2
+       num1 = num2
+       num2 = tmp
+       i+=1
+     end
+
+     num2
+    end
+
+A5. The Big-O is n because the number of times the program iterates is dependent on n. The 'while i < n - 1 statement' and incrementing i by 1 during each iteration, ensures the iteration is run for the length of the collection. See example below.
+
+  n = 3
+    iteration 1 | num1 = 0
+                | num2 = 1
+                | i = 0
+                | i < 2? True
+                | tmp = 1
+                | num1 = 1
+                | num2 = 1
+                | i = 1
+    ---------------------------
+    iteration 2 | i < 2? True
+                | tmp = 2
+                | num1 = 1
+                | num2 = 2
+                | i = 2
+    ---------------------------
+    iteration 3 | i < 2? False
+                | 2
+
+Q6. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+    def sort(collection, from=0, to=nil)
+     if to == nil
+       # Sort the whole collection, by default
+       to = collection.count - 1
+     end
+
+     if from >= to
+       # Done sorting
+       return
+     end
+
+     # Take a pivot value, at the far left
+     pivot = collection[from]
+
+     # Min and Max pointers
+     min = from
+     max = to
+
+     # Current free slot
+     free = min
+
+     while min < max
+       if free == min # Evaluate collection[max]
+         if collection[max] <= pivot # Smaller than pivot, must move
+           collection[free] = collection[max]
+           min += 1
+           free = max
+         else
+           max -= 1
+         end
+       elsif free == max # Evaluate collection[min]
+         if collection[min] >= pivot # Bigger than pivot, must move
+           collection[free] = collection[min]
+           max -= 1
+           free = min
+         else
+           min += 1
+         end
+       else
+         raise "Inconsistent state"
+       end
+     end
+
+A6. The Big-O is n log n. This is similar to merge sort where as the collection size grows, the number of recursive layers in the tree grows and the complexity is a function of the size of the tree.
