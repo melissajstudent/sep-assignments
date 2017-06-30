@@ -66,8 +66,8 @@ class SeparateChaining
   def print_items
     (0...size()).each do |i|
       if @items[i] != nil
-        puts "index: #{i}"
         @items[i].print
+        puts "index: #{i}"
       end
     end
     puts "load factor: #{load_factor()}"
